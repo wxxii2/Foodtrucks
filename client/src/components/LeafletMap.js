@@ -17,10 +17,10 @@ export default function LeafletMap(props) {
     const [address, setAddress] = useState('');
 
     const [position, setPosition] = useState(props.center)
+    console.log(position,"position")
     const eventHandlers = useMemo(
         (e) => ({
             dragend(e) {
-                console.log(e.target.getLatLng())
                 setPosition(e.target.getLatLng())
             },
             click() {

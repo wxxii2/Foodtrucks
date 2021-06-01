@@ -18,14 +18,26 @@ function App(props) {
 
     const [name, setName] = useState('');
 
-    const [lat, setLat] = useState(''); 
-    const [lng, setLng] = useState('');
+    const [lat, setLat] = useState('-37.80714581767628'); 
+    const [lng, setLng] = useState('144.96670319946628');
     const [vendors, setVendors] = useState([]); 
 
     const [modal, setModal] = useState('');
 
     const handleClose = () => setShow(false);
-    
+    function getMapPosition(){
+      navigator.geolocation.getCurrentPosition(function (position) {
+        
+        setLat(position.coords.latitude)
+        setLng(position.coords.longitude)
+          axios.get('/vendor?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude).then(response => {
+            setVendors(response.data.vendors)
+        },function (err) {
+          alert(err.code);
+        })
+      });
+     }
+    getMapPosition()
     /**
     *Select appear modal for customer and vendor
     */
@@ -41,20 +53,21 @@ function App(props) {
     /**
     * Get geolocation from website
     */ 
-    useEffect(() => {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        setLat(position.coords.latitude)
-        setLng(position.coords.longitude)
-      });
-      axios.get('/vendor?lat=' + lat + '&lng=' + lng).then(response => {
-          setVendors(response.data.vendors)
-      })
-    }, [lat, lng])
+   
+    
+     
+    
+    // useEffect(() => {
+      
+    // }, [lat, lng])
 
     // For customer login
     const onCustomerLogin = () => {
         axios.post('/customer/login', { email: email, password: password }).then(response => {
-            if (response.data.success) {              
+            if (response.data.success) {
+              // setInterval(()=>{
+              //   getMapPosition()
+              // },1000)              
               message.success('You have logged in successfully :)')
               props.history.push('/customer', {
                 customer: response.data.customer,

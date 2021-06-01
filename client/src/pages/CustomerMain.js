@@ -8,7 +8,7 @@ export default function CustomerMain(props) {
 
     const [orders, setOrders] = useState([]);
     const [snacks, setSnacks] = useState([]);
-
+    console.log(props.location.state.position,"props.location.state.position")
     useEffect(() => {
         // To get all order detail for one customer
         if (props.location.state.customer) {
