@@ -92,6 +92,6 @@ app.use('/vendor', vendorRouter);
 app.use('/snack', snackRouter);
 app.use('/order', orderRouter);
 app.use(express.static(__dirname+"/product",{index:"index.html"}))
-server.listen(process.env.PORT || 8080, () => {
+server.listen(process.env.PORT || 80, () => {
     console.log("Snacks in a van app is running!")
 })
