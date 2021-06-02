@@ -25,19 +25,10 @@ function App(props) {
     const [modal, setModal] = useState('');
 
     const handleClose = () => setShow(false);
-    function getMapPosition(){
-      navigator.geolocation.getCurrentPosition(function (position) {
-        
-        setLat(position.coords.latitude)
-        setLng(position.coords.longitude)
-          axios.get('/vendor?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude).then(response => {
-            setVendors(response.data.vendors)
-        },function (err) {
-          alert(err.code);
-        })
-      });
-     }
-    getMapPosition()
+    // function getMapPosition(){
+      
+    //  }
+    // getMapPosition()
     /**
     *Select appear modal for customer and vendor
     */
@@ -53,12 +44,28 @@ function App(props) {
     /**
     * Get geolocation from website
     */ 
-   
+  //  function aa(){
+  //   navigator.geolocation.getCurrentPosition(function (position) {
+        
+  //     setLat(position.coords.latitude)
+  //     setLng(position.coords.longitude)
+  //       axios.get('/vendor?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude).then(response => {
+  //         setVendors(response.data.vendors)
+  //     },function (err) {
+  //       alert(err.code);
+  //     })
+  //   });
+  //  }
+  //  aa()
     
      
     
     // useEffect(() => {
-      
+    //   axios.get('/vendor?lat=' + lat + '&lng=' + lng).then(response => {
+    //     setVendors(response.data.vendors)
+    //   },function (err) {
+    //     alert(err.code);
+    //   })
     // }, [lat, lng])
 
     // For customer login
